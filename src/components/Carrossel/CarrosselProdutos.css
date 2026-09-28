@@ -1,0 +1,75 @@
+:host {
+    width: 100%;
+}
+
+.carrossel-produtos {
+    height: 28rem;
+    font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+}
+
+.carrossel-categoria {
+    margin: 0;
+    padding: 0.75rem 1rem 0.25rem;
+    color: #fff0bd;
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.carrossel-produtos .carrossel-scrollbar-hidden {
+    height: calc(100% - 3rem) !important;
+    box-sizing: border-box;
+}
+
+.carrossel-scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: hidden !important;
+}
+
+.carrossel-scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .carrossel-produtos {
+        height: 19rem;
+    }
+
+    .carrossel-categoria {
+        padding: 0.6rem 1rem 0.2rem;
+        font-size: 1.05rem;
+    }
+
+    .carrossel-scrollbar-hidden {
+        gap: 0.5rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .carrossel-card {
+        height: 16rem !important;
+        width: calc((100vw - 2.5rem) / 2) !important;
+        padding: 0.65rem 0.45rem 1rem !important;
+        gap: 0.4rem !important;
+    }
+
+    .carrossel-card-imagem {
+        width: 100% !important;
+        height: 105px !important;
+    }
+
+    .carrossel-card-titulo {
+        font-size: 0.95rem !important;
+        line-height: 1.15;
+    }
+
+    .carrossel-card-precos {
+        gap: 0.2rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    .carrossel-card-preco {
+        font-size: 1rem !important;
+    }
+}

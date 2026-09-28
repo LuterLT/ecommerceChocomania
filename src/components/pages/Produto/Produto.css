@@ -1,0 +1,151 @@
+.produto-detalhe {
+	display: grid;
+	grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+	gap: 3rem;
+	max-width: 1100px;
+	margin: 3rem auto;
+	padding: 2rem;
+	color: #fff0bd;
+	font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+}
+
+.produto-imagem-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 420px;
+	padding: 2rem;
+	border-radius: 0.5rem;
+	background: #f4c96d;
+}
+
+.produto-imagem {
+	width: 100%;
+	max-width: 420px;
+	object-fit: contain;
+}
+
+.produto-informacoes {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.produto-categoria,
+.produto-estoque {
+	margin: 0;
+	color: #f4c96d;
+	font-size: 0.95rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.produto-informacoes h1 {
+	margin: 0.5rem 0 1rem;
+	color: #fff0bd;
+	font-family: Georgia, serif;
+	font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.produto-descricao {
+	margin: 0;
+	color: #fff8df;
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+
+.produto-preco {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	margin: 1.5rem 0 0.8rem;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.preco-original {
+	color: #aaa;
+	font-size: 1.15rem;
+	text-decoration: line-through;
+}
+
+.preco-desconto {
+	color: #ff4b4b;
+}
+
+.produto-acoes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.controle-quantidade {
+	display: flex;
+	align-items: center;
+	border: 2px solid #f4c96d;
+	border-radius: 0.4rem;
+	overflow: hidden;
+}
+
+.controle-quantidade button,
+.controle-quantidade span {
+	width: 2.8rem;
+	height: 2.8rem;
+	display: grid;
+	place-items: center;
+	color: #fff0bd;
+	font-size: 1.3rem;
+}
+
+.controle-quantidade button {
+	border: 0;
+	background: #3b170f;
+	cursor: pointer;
+}
+
+.controle-quantidade button:hover,
+.botao-carrinho:hover {
+	filter: brightness(1.15);
+}
+
+.botao-carrinho {
+	border: 0;
+	border-radius: 0.4rem;
+	padding: 0 1.2rem;
+	min-height: 2.8rem;
+	background: #f4c96d;
+	color: #3b170f;
+	font-size: 1rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.produto-nao-encontrado {
+	padding: 4rem 1rem;
+	color: #fff0bd;
+	text-align: center;
+}
+
+@media (max-width: 700px) {
+	.produto-detalhe {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		margin: 1rem auto;
+		padding: 1rem;
+	}
+
+	.produto-imagem-container {
+		min-height: 280px;
+	}
+
+	.produto-acoes {
+		align-items: stretch;
+	}
+
+	.botao-carrinho {
+		flex: 1;
+		min-width: 0;
+		min-height: 3.2rem;
+	}
+}

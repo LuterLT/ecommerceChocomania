@@ -1,0 +1,103 @@
+.carrinho-pagina,
+.carrinho-vazio {
+	max-width: 1100px;
+	margin: 3rem auto;
+	padding: 0 2rem;
+	color: #fff0bd;
+	font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+}
+
+.carrinho-pagina h1,
+.carrinho-vazio h1 {
+	margin: 0 0 1.5rem;
+	font-family: Georgia, serif;
+	font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.carrinho-conteudo {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 320px;
+	align-items: start;
+	gap: 2rem;
+}
+
+.carrinho-itens {
+	overflow: hidden;
+	border-radius: 0.5rem;
+}
+
+.carrinho-resumo {
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	background: #f4c96d;
+	color: #3b170f;
+}
+
+.carrinho-resumo h2 {
+	margin: 0 0 1.5rem;
+	font-family: Georgia, serif;
+}
+
+.carrinho-resumo > div {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 0.9rem;
+}
+
+.carrinho-desconto {
+	color: #b21f1f;
+}
+
+.carrinho-resumo .carrinho-total {
+	margin-top: 1.2rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgb(59 23 15 / 30%);
+	font-size: 1.25rem;
+}
+
+.botao-prosseguir {
+	width: 100%;
+	min-height: 3rem;
+	margin-top: 1rem;
+	border: 0;
+	border-radius: 0.4rem;
+	background: #3b170f;
+	color: #fff0bd;
+	font-size: 1rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.botao-prosseguir:hover,
+.carrinho-link-compras:hover {
+	filter: brightness(1.2);
+}
+
+.carrinho-vazio {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+	text-align: center;
+}
+
+.carrinho-link-compras {
+	display: inline-block;
+	padding: 0.8rem 1.4rem;
+	border-radius: 0.4rem;
+	background: #f4c96d;
+	color: #3b170f;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+@media (max-width: 800px) {
+	.carrinho-pagina,
+	.carrinho-vazio {
+		margin: 1.5rem auto;
+		padding: 0 1rem;
+	}
+
+	.carrinho-conteudo {
+		grid-template-columns: 1fr;
+	}
+}

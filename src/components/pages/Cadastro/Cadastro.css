@@ -1,0 +1,117 @@
+.cadastro-page {
+	display: grid;
+	flex: 1;
+	box-sizing: border-box;
+	place-items: center;
+	padding: 4rem 1.5rem;
+	background-color: #804828;
+}
+
+.cadastro-card {
+	width: min(100%, 460px);
+	padding: 3rem;
+	border: 7px solid rgba(244, 201, 109, 0.5);
+	border-radius: 8px;
+	background: #f4c96d;
+	box-shadow: 0 18px 40px rgba(36, 10, 5, 0.28);
+}
+
+.cadastro-heading {
+	text-align: center;
+}
+
+.cadastro-heading h1 {
+	margin: 0.55rem 0 0.75rem;
+	color: #3b170f;
+	font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+	font-size: clamp(1.8rem, 5vw, 2.35rem);
+	line-height: 1.1;
+}
+
+.cadastro-heading p {
+	margin: 0;
+	color: #765447;
+	line-height: 1.5;
+}
+
+.cadastro-form {
+	display: grid;
+	gap: 1.1rem;
+	margin-top: 2rem;
+}
+
+.cadastro-field {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.cadastro-field label {
+	color: #3b170f;
+	font-size: 0.95rem;
+	font-weight: 700;
+}
+
+.cadastro-field input {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.9rem 1rem;
+	border: 2px solid #cda98a;
+	border-radius: 6px;
+	outline: none;
+	color: #3b170f;
+	background: #fffdf9;
+	font: inherit;
+}
+
+.cadastro-field input:focus {
+	border-color: #c87932;
+	box-shadow: 0 0 0 3px rgba(200, 121, 50, 0.18);
+}
+
+.cadastro-field input.cadastro-input-error {
+	border-color: #b42318;
+	background: #f9d6d0;
+}
+
+.cadastro-form button {
+	margin: 1rem 0.25rem 0;
+	padding: 0.95rem 1rem;
+	border: 0;
+	border-radius: 6px;
+	color: #fff0bd;
+	background: #3b170f;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.cadastro-form button:hover,
+.cadastro-form button:focus-visible {
+	color: #321108;
+	background: #c87932;
+}
+
+.cadastro-logged-in p {
+	margin-bottom: 1.5rem;
+}
+
+.cadastro-logout {
+	padding: 0;
+	border: 0;
+	color: #3b170f;
+	background: transparent;
+	font: inherit;
+	font-weight: 700;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+@media (max-width: 520px) {
+	.cadastro-page {
+		padding: 2.5rem 1rem;
+	}
+
+	.cadastro-card {
+		padding: 2rem 1.25rem;
+	}
+}

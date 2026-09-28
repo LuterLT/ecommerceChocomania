@@ -1,0 +1,137 @@
+.login-page {
+	display: grid;
+	flex: 1;
+	box-sizing: border-box;
+	place-items: center;
+	padding: 4rem 1.5rem;
+	background-color: #804828;
+}
+
+.login-card {
+	width: min(100%, 460px);
+	padding: 3rem;
+	border: 7px solid rgba(244, 201, 109, 0.5);
+	border-radius: 8px;
+	background: #F4C96D;
+	box-shadow: 0 18px 40px rgba(36, 10, 5, 0.28);
+}
+/* #fffaf3 */
+.login-heading {
+	text-align: center;
+}
+
+.login-kicker {
+	color: #c87932;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.login-heading h1 {
+	margin: 0.55rem 0 0.75rem;
+	color: #3b170f;
+	font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+	font-size: clamp(1.8rem, 5vw, 2.35rem);
+	line-height: 1.1;
+}
+
+.login-heading p {
+	margin: 0;
+	color: #765447;
+	line-height: 1.5;
+}
+
+.login-form {
+	display: grid;
+	gap: 1.25rem;
+	margin-top: 2rem;
+}
+
+.form-field {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.form-field label {
+	color: #3b170f;
+	font-size: 0.95rem;
+	font-weight: 700;
+}
+
+.form-field input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.9rem 1rem;
+	border: 2px solid #cda98a;
+	border-radius: 6px;
+	outline: none;
+	color: #3b170f;
+	background: #fffdf9;
+	font: inherit;
+	transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-field input::placeholder {
+	color: #987b6c;
+}
+
+.form-field input:focus {
+	border-color: #c87932;
+	box-shadow: 0 0 0 3px rgba(200, 121, 50, 0.18);
+}
+
+.form-field input.input-error {
+	border-color: #b42318;
+	background: #f9d6d0;
+}
+
+.form-field input.input-error:focus {
+	border-color: #b42318;
+	box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.18);
+}
+
+.login-form button {
+	margin: 1rem 0.25rem 0;
+	padding: 0.95rem 1rem;
+	border: 0;
+	border-radius: 6px;
+	color: #fff0bd;
+	background: #3b170f;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 160ms ease, color 160ms ease;
+}
+
+.login-form button:hover,
+.login-form button:focus-visible {
+	color: #321108;
+	background: #c87932;
+}
+
+.logged-in-message p {
+	margin-bottom: 1.5rem;
+}
+
+.logout-link {
+	padding: 0;
+	border: 0;
+	color: #3b170f;
+	background: transparent;
+	font: inherit;
+	font-weight: 700;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+@media (max-width: 520px) {
+	.login-page {
+		padding: 2.5rem 1rem;
+	}
+
+	.login-card {
+		padding: 2rem 1.25rem;
+	}
+}
