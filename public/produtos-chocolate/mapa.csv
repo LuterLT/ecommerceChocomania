@@ -1,0 +1,53 @@
+﻿id,titulo,arquivo,tile_na_grade,status,observacao
+1,Chocolate ao Leite,produtos/chocolate-ao-leite.webp,L1C1,encontrado,
+2,Chocolate Meio Amargo 70%,produtos/chocolate-meio-amargo-70.webp,L1C2,encontrado,
+3,Chocolate Branco Cremoso,produtos/chocolate-branco-cremoso.webp,L1C3,encontrado,
+4,Chocolate com Castanhas,produtos/chocolate-com-castanhas.webp,L1C4,encontrado,
+5,Chocolate com Avelã,produtos/chocolate-com-avela.webp,L1C5,encontrado,
+6,Chocolate 85% Cacau,produtos/chocolate-85-cacau.webp,L1C6,encontrado,
+7,Chocolate com Caramelo,produtos/chocolate-com-caramelo.webp,Img2-L1C1,encontrado,Gerado em segunda imagem
+8,Chocolate Crocante,produtos/chocolate-crocante.webp,L1C7,encontrado,Legenda 'Crocante'
+9,Chocolate com Coco,produtos/chocolate-com-coco.webp,Img2-L1C2,encontrado,Gerado em segunda imagem
+10,Chocolate Intenso 60%,produtos/chocolate-intenso-60.webp,L1C8,encontrado,Legenda na imagem diz 50%
+11,Bombom de Morango,produtos/bombom-de-morango.webp,L2C1,encontrado,
+12,Bombom de Avelã,produtos/bombom-de-avela.webp,L2C2,encontrado,
+13,Bombom de Caramelo,produtos/bombom-de-caramelo.webp,L2C3,encontrado,
+14,Bombom de Coco,produtos/bombom-de-coco.webp,L2C4,encontrado,
+15,Bombom de Maracujá,produtos/bombom-de-maracuja.webp,L2C5,encontrado,
+16,Bombom de Amendoim,produtos/bombom-de-amendoim.webp,L2C6,encontrado,Há outro tile 'Amendoim' (L2C7) em nao_usados
+17,Bombom Crocante,produtos/bombom-crocante.webp,L3C1,encontrado,"Há 3 tiles 'Crocante' (L2C8, L3C1, L3C2); escolhi L3C1"
+18,Bombom de Café,produtos/bombom-de-cafe.webp,L3C4,encontrado,
+19,Bombom de Baunilha,produtos/bombom-de-baunilha.webp,L3C5,encontrado,"Há 3 tiles 'Baunilha' (L3C5, L3C6, L3C7); escolhi L3C5"
+20,Bombom de Cereja,produtos/bombom-de-cereja.webp,L3C8,encontrado,
+21,Trufa Tradicional,produtos/trufa-tradicional.webp,L4C1,encontrado,
+22,Trufa de Morango,produtos/trufa-de-morango.webp,L4C2,encontrado,
+23,Trufa de Maracujá,produtos/trufa-de-maracuja.webp,L4C3,encontrado,
+24,Trufa de Café,produtos/trufa-de-cafe.webp,L4C4,encontrado,
+25,Trufa de Avelã,produtos/trufa-de-avela.webp,L4C5,encontrado,
+26,Trufa de Coco,produtos/trufa-de-coco.webp,L4C6,encontrado,
+27,Trufa de Pistache,produtos/trufa-de-pistache.webp,L4C7,encontrado,"Legenda diz 'Caramelo Salgado', mas a imagem é de trufa com pistache"
+28,Trufa de Caramelo Salgado,produtos/trufa-de-caramelo-salgado.webp,Img2-L2C1,encontrado,Gerado em segunda imagem
+29,Trufa de Laranja,produtos/trufa-de-laranja.webp,L4C8,encontrado,Há outro tile de laranja (L5C8) em nao_usados
+30,Trufa de Doce de Leite,produtos/trufa-de-doce-de-leite.webp,Img2-L2C2,encontrado,Gerado em segunda imagem
+31,Chocolate Quente Cremoso,produtos/chocolate-quente-cremoso.webp,L5C1,encontrado,
+32,Chocolate Quente com Canela,produtos/chocolate-quente-com-canela.webp,L5C2,encontrado,
+33,Cappuccino de Chocolate,produtos/cappuccino-de-chocolate.webp,L5C3,encontrado,
+34,Chocolate Gelado,produtos/chocolate-gelado.webp,L5C4,encontrado,Há outro tile 'Chocolate Gelado' (L5C5) em nao_usados
+35,Milkshake de Chocolate,produtos/milkshake-de-chocolate.webp,L5C6,encontrado,
+36,Creme de Chocolate com Avelã,produtos/creme-de-chocolate-com-avela.webp,L6C1,encontrado,L5C7 (pote de creme) também poderia ser este
+37,Creme de Chocolate Branco,produtos/creme-de-chocolate-branco.webp,L6C2,encontrado,
+38,Chocolate Quente com Marshmallow,produtos/chocolate-quente-com-marshmallow.webp,L6C5,encontrado,L6C3 também é chocolate quente com marshmallow
+39,Mocha de Chocolate,produtos/mocha-de-chocolate.webp,L6C6,encontrado,Há outro tile 'Mocha' (L6C7) em nao_usados
+40,Creme de Chocolate Amargo,produtos/creme-de-chocolate-amargo.webp,L6C8,encontrado,
+,(sem produto correspondente),nao_usados/bombom-amendoim-L2C7.webp,L2C7,nao_usado,legenda original: bombom-amendoim
+,(sem produto correspondente),nao_usados/bombom-crocante-L2C8.webp,L2C8,nao_usado,legenda original: bombom-crocante
+,(sem produto correspondente),nao_usados/bombom-crocante-L3C2.webp,L3C2,nao_usado,legenda original: bombom-crocante
+,(sem produto correspondente),nao_usados/bombom-crocalte-L3C3.webp,L3C3,nao_usado,legenda original: bombom-crocalte
+,(sem produto correspondente),nao_usados/bombom-baunilha-L3C6.webp,L3C6,nao_usado,legenda original: bombom-baunilha
+,(sem produto correspondente),nao_usados/bombom-baunilha-L3C7.webp,L3C7,nao_usado,legenda original: bombom-baunilha
+,(sem produto correspondente),nao_usados/chocolate-gelado-L5C5.webp,L5C5,nao_usado,legenda original: chocolate-gelado
+,(sem produto correspondente),nao_usados/creme-de-chocolate-L5C7.webp,L5C7,nao_usado,legenda original: creme-de-chocolate
+,(sem produto correspondente),nao_usados/trufa-laranja-L5C8.webp,L5C8,nao_usado,legenda original: trufa-laranja
+,(sem produto correspondente),nao_usados/creme-branco-L6C3.webp,L6C3,nao_usado,legenda original: creme-branco
+,(sem produto correspondente),nao_usados/creme-branco-L6C4.webp,L6C4,nao_usado,legenda original: creme-branco
+,(sem produto correspondente),nao_usados/mocha-chocolate-L6C7.webp,L6C7,nao_usado,legenda original: mocha-chocolate

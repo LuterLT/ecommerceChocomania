@@ -21,7 +21,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 12.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-ao-leite.webp",
         popularidade: true,
         quantidade: 45
     },
@@ -32,7 +32,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 18.90,
         desconto: 15,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-meio-amargo-70.webp",
         popularidade: true,
         quantidade: 32
     },
@@ -43,7 +43,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 14.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-branco-cremoso.webp",
         popularidade: false,
         quantidade: 28
     },
@@ -54,7 +54,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 21.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-com-castanhas.webp",
         popularidade: true,
         quantidade: 24
     },
@@ -65,7 +65,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 19.90,
         desconto: 10,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-com-avela.webp",
         popularidade: true,
         quantidade: 36
     },
@@ -76,7 +76,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 22.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-85-cacau.webp",
         popularidade: false,
         quantidade: 18
     },
@@ -87,7 +87,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 17.90,
         desconto: 18,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-com-caramelo.webp",
         popularidade: true,
         quantidade: 30
     },
@@ -98,7 +98,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 13.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-crocante.webp",
         popularidade: false,
         quantidade: 40
     },
@@ -109,7 +109,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 15.90,
         desconto: 10,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-com-coco.webp",
         popularidade: false,
         quantidade: 25
     },
@@ -120,7 +120,7 @@ export const produtos: Produto[] = [
         categoria: "Chocolates em Barra",
         preco: 16.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-intenso-60.webp",
         popularidade: true,
         quantidade: 34
     },
@@ -135,7 +135,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 6.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-morango.webp",
         popularidade: true,
         quantidade: 60
     },
@@ -146,7 +146,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 7.90,
         desconto: 15,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-avela.webp",
         popularidade: true,
         quantidade: 48
     },
@@ -157,7 +157,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 6.50,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-caramelo.webp",
         popularidade: false,
         quantidade: 55
     },
@@ -168,7 +168,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 6.90,
         desconto: 12,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-coco.webp",
         popularidade: true,
         quantidade: 42
     },
@@ -179,7 +179,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 7.50,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-maracuja.webp",
         popularidade: false,
         quantidade: 38
     },
@@ -190,7 +190,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 6.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-amendoim.webp",
         popularidade: true,
         quantidade: 50
     },
@@ -201,7 +201,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 5.90,
         desconto: 8,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-crocante.webp",
         popularidade: false,
         quantidade: 65
     },
@@ -212,7 +212,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 8.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-cafe.webp",
         popularidade: true,
         quantidade: 35
     },
@@ -223,7 +223,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 6.50,
         desconto: 10,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-baunilha.webp",
         popularidade: false,
         quantidade: 44
     },
@@ -234,7 +234,7 @@ export const produtos: Produto[] = [
         categoria: "Bombons",
         preco: 8.50,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/bombom-de-cereja.webp",
         popularidade: true,
         quantidade: 30
     },
@@ -249,7 +249,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 8.90,
         desconto: 10,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-tradicional.webp",
         popularidade: true,
         quantidade: 40
     },
@@ -260,7 +260,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 9.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-morango.webp",
         popularidade: true,
         quantidade: 32
     },
@@ -271,7 +271,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 9.50,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-maracuja.webp",
         popularidade: false,
         quantidade: 28
     },
@@ -282,7 +282,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 10.90,
         desconto: 20,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-cafe.webp",
         popularidade: true,
         quantidade: 25
     },
@@ -293,7 +293,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 11.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-avela.webp",
         popularidade: true,
         quantidade: 30
     },
@@ -304,7 +304,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 9.90,
         desconto: 8,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-coco.webp",
         popularidade: false,
         quantidade: 36
     },
@@ -315,7 +315,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 12.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-pistache.webp",
         popularidade: true,
         quantidade: 20
     },
@@ -326,7 +326,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 11.50,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-caramelo-salgado.webp",
         popularidade: true,
         quantidade: 22
     },
@@ -337,7 +337,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 9.90,
         desconto: 10,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-laranja.webp",
         popularidade: false,
         quantidade: 27
     },
@@ -348,7 +348,7 @@ export const produtos: Produto[] = [
         categoria: "Trufas",
         preco: 10.90,
         desconto: 20,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/trufa-de-doce-de-leite.webp",
         popularidade: true,
         quantidade: 34
     },
@@ -363,7 +363,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 14.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-quente-cremoso.webp",
         popularidade: true,
         quantidade: 20
     },
@@ -374,7 +374,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 15.90,
         desconto: 15,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-quente-com-canela.webp",
         popularidade: false,
         quantidade: 18
     },
@@ -385,7 +385,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 16.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/cappuccino-de-chocolate.webp",
         popularidade: true,
         quantidade: 25
     },
@@ -396,7 +396,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 13.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-gelado.webp",
         popularidade: true,
         quantidade: 30
     },
@@ -407,7 +407,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 19.90,
         desconto: 20,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/milkshake-de-chocolate.webp",
         popularidade: true,
         quantidade: 15
     },
@@ -418,7 +418,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 24.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/creme-de-chocolate-com-avela.webp",
         popularidade: true,
         quantidade: 22
     },
@@ -429,7 +429,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 22.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/creme-de-chocolate-branco.webp",
         popularidade: false,
         quantidade: 19
     },
@@ -440,7 +440,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 18.90,
         desconto: 15,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/chocolate-quente-com-marshmallow.webp",
         popularidade: true,
         quantidade: 17
     },
@@ -451,7 +451,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 17.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/mocha-de-chocolate.webp",
         popularidade: false,
         quantidade: 24
     },
@@ -462,7 +462,7 @@ export const produtos: Produto[] = [
         categoria: "Bebidas e Cremes de Chocolate",
         preco: 26.90,
         desconto: 0,
-        imagem: "/ProdutoSemImagem.webp",
+        imagem: "/produtos-chocolate/produtos/creme-de-chocolate-amargo.webp",
         popularidade: true,
         quantidade: 14
     }
