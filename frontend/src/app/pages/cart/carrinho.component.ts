@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
 import { CartService } from './cart.service';
 
 @Component({
@@ -12,9 +13,20 @@ import { CartService } from './cart.service';
 })
 export class CarrinhoComponent implements OnInit {
   readonly store = inject(CartService);
+  readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
   ngOnInit(): void {
     void this.store.load();
+  }
+
+  order(): void {
+    if (this.store.busy()) return;
+    if (!this.auth.usuario()) {
+      void this.router.navigateByUrl('/login');
+      return;
+    }
+    void this.store.order();
   }
 
   image(path: string): string {

@@ -1,8 +1,8 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Injectable, inject, signal, untracked } from '@angular/core';
+import { Injectable, computed, inject, signal, untracked } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ApiService, apiErrorMessage } from '../../core/api.service';
-import { Carrinho } from '../../core/models';
+import { Carrinho, Pedido } from '../../core/models';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -12,6 +12,11 @@ export class CartService {
   readonly cart = signal<Carrinho | null>(null);
   readonly busy = signal(false);
   readonly error = signal('');
+  readonly success = signal('');
+  readonly canOrder = computed(() => {
+    const items = this.cart()?.itens;
+    return !!items?.length && items.every(item => item.situacao === 'DISPONIVEL');
+  });
 
   reset(): void {
     const refresh = untracked(() => this.busy() || this.cart() !== null);
@@ -19,6 +24,7 @@ export class CartService {
     this.cart.set(null);
     this.etag = null;
     this.error.set('');
+    this.success.set('');
     this.busy.set(false);
     // A session change must not leave an open cart page waiting on an ignored request.
     if (refresh) untracked(() => { void this.load(); });
@@ -44,6 +50,30 @@ export class CartService {
 
   async remove(produtoId: number): Promise<void> {
     await this.mutate('DELETE', produtoId);
+  }
+
+  async order(): Promise<void> {
+    if (this.busy()) return;
+    if (!this.canOrder()) {
+      this.error.set('Adicione produtos disponíveis e confira as quantidades antes de realizar o pedido.');
+      return;
+    }
+    const generation = this.generation;
+    await this.perform(async () => {
+      if (!this.etag) {
+        const response = await this.fetchCart();
+        if (generation !== this.generation) return response;
+        this.confirm(response);
+      }
+      const response = await firstValueFrom(this.api.request<Pedido>(
+        'POST', '/pedidos', undefined, { 'If-Match': this.etag! },
+      ));
+      if (!response.body?.carrinho) throw new Error('A API não retornou o carrinho do pedido.');
+      if (generation === this.generation) {
+        this.success.set(`Pedido #${response.body.id} realizado com sucesso!`);
+      }
+      return response.clone<Carrinho>({ body: response.body.carrinho });
+    });
   }
 
   private async mutate(method: string, produtoId: number, body?: { quantidade: number }): Promise<void> {
@@ -76,6 +106,7 @@ export class CartService {
     const generation = this.generation;
     this.busy.set(true);
     this.error.set('');
+    this.success.set('');
     try {
       const response = await action();
       if (generation === this.generation) this.confirm(response);

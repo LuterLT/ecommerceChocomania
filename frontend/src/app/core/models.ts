@@ -32,6 +32,7 @@ export interface Carrinho {
   totalCentavos: number;
 }
 export interface Usuario { id: number; nomeCompleto: string; email: string; }
+export interface Pedido { id: number; totalCentavos: number; carrinho: Carrinho; }
 export interface Sessao { usuario: Usuario; }
 export interface AtualizarPerfilRequest { nomeCompleto: string; email: string; }
 export interface CadastroRequest { nomeCompleto: string; email: string; senha: string; dataNascimento?: string; }

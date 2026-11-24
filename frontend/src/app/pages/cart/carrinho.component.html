@@ -1,5 +1,8 @@
 <section class="carrinho-pagina" [attr.aria-busy]="store.busy()">
   <h1>Meu carrinho</h1>
+  @if (store.success()) {
+    <p role="status">{{ store.success() }}</p>
+  }
   @if (store.error()) {
     <div class="carrinho-erro" role="alert">
       <p>{{ store.error() }}</p>
@@ -63,8 +66,11 @@
           <div><span>Subtotal</span><strong>{{ cart.subtotalCentavos / 100 | currency:'BRL' }}</strong></div>
           <div><span>Descontos</span><strong class="carrinho-desconto">− {{ cart.descontoCentavos / 100 | currency:'BRL' }}</strong></div>
           <div class="carrinho-total"><span>Total</span><strong>{{ cart.totalCentavos / 100 | currency:'BRL' }}</strong></div>
-          <button type="button" class="botao-prosseguir" disabled aria-describedby="checkout-status">Prosseguir</button>
-          <p id="checkout-status">Finalização de compra ainda indisponível.</p>
+          <button type="button" class="botao-prosseguir" [disabled]="store.busy() || !store.canOrder()"
+            (click)="order()">Realizar pedido</button>
+          @if (!auth.usuario()) {
+            <p>Entre na sua conta para realizar o pedido.</p>
+          }
         </aside>
       </div>
     }

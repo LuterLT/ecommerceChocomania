@@ -10,6 +10,13 @@ const emptyCart = (versao: number): Carrinho => ({
   subtotalCentavos: 0, descontoCentavos: 0, totalCentavos: 0,
 });
 
+const filledCart = (versao: number): Carrinho => ({
+  ...emptyCart(versao), subtotalCentavos: 2000, totalCentavos: 2000,
+  itens: [{ produtoId: 1, titulo: 'Chocolate', imagemUrl: '/chocolate.webp', quantidade: 2,
+    estoqueDisponivel: 10, precoBaseCentavos: 1000, precoFinalCentavos: 1000,
+    totalCentavos: 2000, situacao: 'DISPONIVEL' }],
+});
+
 describe('CartService HTTP contracts', () => {
   let service: CartService;
   let http: HttpTestingController;
@@ -114,5 +121,72 @@ describe('CartService HTTP contracts', () => {
     await updating;
     expect(service.cart()?.versao).toBe(2);
     expect(service.error()).toBe('Estoque insuficiente.');
+  });
+
+  async function loadFilled(): Promise<void> {
+    const loading = service.load();
+    http.expectOne('/api/v1/carrinho').flush(filledCart(2), { headers: { ETag: '"2"' } });
+    await loading;
+  }
+
+  it('places one order with CSRF and ETag, then accepts the empty cart and confirmation', async () => {
+    await loadFilled();
+    const ordering = service.order();
+    await service.order();
+    csrf();
+    const request = http.expectOne('/api/v1/pedidos');
+    expect(request.request.method).toBe('POST');
+    expect(request.request.headers.get('If-Match')).toBe('"2"');
+    expect(request.request.headers.get('X-CSRF-TOKEN')).toBe('csrf-token');
+    expect(request.request.withCredentials).toBe(true);
+    request.flush({ id: 42, totalCentavos: 2000, carrinho: emptyCart(3) }, { headers: { ETag: '"3"' } });
+    await ordering;
+    expect(service.cart()).toEqual(emptyCart(3));
+    expect(service.success()).toContain('#42');
+    expect(service.canOrder()).toBe(false);
+    expect(service.busy()).toBe(false);
+  });
+
+  it('preserves the cart when the order fails', async () => {
+    await loadFilled();
+    const ordering = service.order();
+    csrf();
+    http.expectOne('/api/v1/pedidos').flush(
+      { mensagem: 'Não foi possível salvar o pedido.' }, { status: 500, statusText: 'Server Error' },
+    );
+    await ordering;
+    expect(service.cart()).toEqual(filledCart(2));
+    expect(service.success()).toBe('');
+    expect(service.error()).toBe('Não foi possível salvar o pedido.');
+  });
+
+  it('blocks empty carts and unavailable items', async () => {
+    await load();
+    await service.order();
+    expect(service.error()).toContain('produtos disponíveis');
+    const loading = service.load();
+    const cart = filledCart(3);
+    cart.itens[0].situacao = 'ESTOQUE_INSUFICIENTE';
+    http.expectOne('/api/v1/carrinho').flush(cart);
+    await loading;
+    expect(service.canOrder()).toBe(false);
+    await service.order();
+    http.expectNone('/api/v1/pedidos');
+  });
+
+  it('ignores an order response after changing the session', async () => {
+    await loadFilled();
+    const ordering = service.order();
+    csrf();
+    const request = http.expectOne('/api/v1/pedidos');
+    service.reset();
+    const refreshing = http.expectOne('/api/v1/carrinho');
+    request.flush({ id: 42, totalCentavos: 2000, carrinho: emptyCart(3) });
+    await ordering;
+    expect(service.success()).toBe('');
+    expect(service.cart()).toBeNull();
+    refreshing.flush(emptyCart(1));
+    await vi.waitFor(() => expect(service.busy()).toBe(false));
+    expect(service.cart()?.versao).toBe(1);
   });
 });
