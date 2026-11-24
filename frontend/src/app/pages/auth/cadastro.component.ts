@@ -55,7 +55,7 @@ function pastDate(control: AbstractControl): ValidationErrors | null {
             <input id="cadastro-senha" type="password" formControlName="senha" autocomplete="new-password"
               placeholder="Crie sua senha" [class.input-error]="invalid('senha')"
               [attr.aria-invalid]="invalid('senha')" aria-describedby="cadastro-senha-help cadastro-senha-error" />
-            <small id="cadastro-senha-help">Use pelo menos 8 caracteres e no máximo 72 bytes UTF-8.</small>
+            <small id="cadastro-senha-help">Use pelo menos 8 caracteres.</small>
             @if (invalid('senha')) { <small id="cadastro-senha-error" class="field-error">Revise os requisitos da senha.</small> }
           </div>
           <div class="form-field">
