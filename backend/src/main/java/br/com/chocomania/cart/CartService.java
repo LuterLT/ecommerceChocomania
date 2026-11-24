@@ -25,6 +25,39 @@ public class CartService {
         return view(resolve(session));
     }
 
+    public Order checkout(HttpSession session, String version) {
+        if (!(session.getAttribute("usuarioId") instanceof Long)) {
+            throw AuthService.sessaoInvalida();
+        }
+        var cartId = resolve(session);
+        checkVersion(cartId, version);
+        var cart = view(cartId);
+        if (cart.itens().isEmpty()) {
+            throw error(HttpStatus.CONFLICT, "CARRINHO_VAZIO", "Adicione produtos antes de realizar o pedido.");
+        }
+        for (var item : cart.itens()) {
+            if (!"DISPONIVEL".equals(item.situacao())) {
+                throw error(HttpStatus.CONFLICT, "ESTOQUE_INSUFICIENTE", "Ajuste os produtos indisponíveis ou sem estoque antes de realizar o pedido.");
+            }
+            checkStock(item.produtoId(), item.quantidade());
+        }
+        Long orderId = jdbc.queryForObject("""
+                INSERT INTO pedidos(usuario_id, total_centavos) VALUES (?, ?) RETURNING id
+                """, Long.class, session.getAttribute("usuarioId"), cart.totalCentavos());
+        for (var item : cart.itens()) {
+            jdbc.update("""
+                    INSERT INTO itens_pedido(pedido_id, produto_id, titulo, quantidade,
+                        preco_base_centavos, preco_unitario_centavos, total_centavos)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """, orderId, item.produtoId(), item.titulo(), item.quantidade(),
+                    item.precoBaseCentavos(), item.precoFinalCentavos(), item.totalCentavos());
+        }
+        jdbc.update("DELETE FROM itens_carrinho WHERE carrinho_id = ?", cartId);
+        jdbc.update("DELETE FROM operacoes_carrinho WHERE carrinho_id = ?", cartId);
+        increment(cartId);
+        return new Order(orderId, cart.totalCentavos(), view(cartId));
+    }
+
     public AddResult add(HttpSession session, long productId, int quantity, String key) {
         validateQuantity(productId, quantity);
         if (key != null && (key.isBlank() || key.length() > 128)) {
@@ -194,6 +227,7 @@ public class CartService {
 
     private record Operation(long productId, int quantity) {}
     public record AddResult(boolean created, Cart cart) {}
+    public record Order(long id, long totalCentavos, Cart carrinho) {}
     public record Cart(String id, long versao, String moeda, List<Item> itens,
                        long subtotalCentavos, long descontoCentavos, long totalCentavos) {}
     public record Item(long produtoId, String titulo, String imagemUrl, int quantidade, int estoqueDisponivel,

@@ -233,7 +233,29 @@ $otherCart = Send-Request $client GET '/api/v1/carrinho'
 Assert-That (@($otherCart.Json.itens).Count -eq 0 -and $otherCart.Json.id -ne $owned.Json.id) (
     'Outra conta não deve acessar o carrinho anterior.'
 )
+$orderCart = Send-Request $client POST '/api/v1/carrinho/itens' 201 -Body @{
+    produtoId = 2; quantidade = 2
+}
+$null = Send-Request $client POST '/api/v1/pedidos' 403 -WithoutCsrf -Headers @{ 'If-Match' = $orderCart.ETag }
+$null = Send-Request $client POST '/api/v1/pedidos' 428
+$null = Send-Request $client POST '/api/v1/pedidos' 412 -Headers @{ 'If-Match' = $otherCart.ETag }
+$order = Send-Request $client POST '/api/v1/pedidos' 201 -Headers @{ 'If-Match' = $orderCart.ETag }
+Assert-That ($order.Json.id -gt 0 -and $order.Json.totalCentavos -eq 3214) 'Pedido deve retornar identificador e total calculado no servidor.'
+Assert-That (@($order.Json.carrinho.itens).Count -eq 0 -and $order.Json.carrinho.totalCentavos -eq 0) 'Pedido deve esvaziar o carrinho.'
+Assert-That ($order.ETag -ne $orderCart.ETag) 'Pedido deve atualizar a versão do carrinho.'
+$null = Send-Request $client POST '/api/v1/pedidos' 412 -Headers @{ 'If-Match' = $orderCart.ETag }
+$null = Send-Request $client POST '/api/v1/pedidos' 409 -Headers @{ 'If-Match' = $order.ETag }
+$afterOrder = Send-Request $client GET '/api/v1/carrinho'
+Assert-That (@($afterOrder.Json.itens).Count -eq 0) 'Consulta posterior deve confirmar a limpeza persistida.'
 $null = Send-Request $client DELETE '/api/v1/sessao' 204
+
+$visitor = New-Client
+Update-Csrf $visitor
+$visitorCart = Send-Request $visitor POST '/api/v1/carrinho/itens' 201 -Body @{ produtoId = 2; quantidade = 1 }
+$visitorOrder = Send-Request $visitor POST '/api/v1/pedidos' 401 -Headers @{ 'If-Match' = $visitorCart.ETag }
+Assert-That ($visitorOrder.Json.codigo -eq 'SESSAO_INVALIDA') 'Pedido deve exigir login.'
+$visitorAfter = Send-Request $visitor GET '/api/v1/carrinho'
+Assert-That ($visitorAfter.ETag -eq $visitorCart.ETag -and $visitorAfter.Json.itens[0].quantidade -eq 1) 'Pedido rejeitado deve preservar o carrinho visitante.'
 
 Write-Output "OK: $script:Checks verificações HTTP concluídas."
 Write-Output "Contas de teste mantidas no banco: $email e $otherEmail"
