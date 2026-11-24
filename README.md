@@ -50,4 +50,6 @@ Catálogo, busca, detalhe, carrinho de visitante/conta, cadastro, login, ediçã
 
 O [guia resumido do projeto](output/pdf/guia-api-chocomania.pdf) explica a arquitetura, execução local, contratos HTTP, edição do perfil e acesso ao banco.
 
-Checkout, pagamento, telefone/endereço e recuperação de senha não estão implementados no backend atual. A especificação [FRONTEND_MIGRATION_SPEC.md](FRONTEND_MIGRATION_SPEC.md) registra o diagnóstico anterior e propostas futuras; não substitui os contratos implementados.
+No carrinho, **Realizar pedido** exige login, chama `POST /api/v1/pedidos`, salva o pedido e seus itens no PostgreSQL e esvazia o carrinho na mesma transação. Visitantes são encaminhados ao login. O servidor guarda os preços no momento do pedido; não há pagamento nem baixa de estoque.
+
+Pagamento, telefone/endereço e recuperação de senha não estão implementados no backend atual.

@@ -51,6 +51,7 @@ Todas as rotas abaixo usam o prefixo `/api/v1`.
 | POST | `/carrinho/itens` | `{produtoId, quantidade}`. Soma quantidade. Aceita `Idempotency-Key` opcional. |
 | PATCH | `/carrinho/itens/{produtoId}` | `{quantidade}`. Substitui quantidade. Exige `If-Match`. |
 | DELETE | `/carrinho/itens/{produtoId}` | Remove item. Exige `If-Match`. |
+| POST | `/pedidos` | Sem corpo. Salva o pedido e esvazia o carrinho. Exige login, CSRF e `If-Match`. Retorna `201`, `{id, totalCentavos, carrinho}` e o ETag do carrinho vazio. Sem login retorna `401`. |
 
 Campos extras no JSON são rejeitados. A senha exige entre 8 caracteres e 72 bytes UTF-8. O nascimento é opcional e deve indicar uma data anterior à atual.
 E-mails são normalizados para minúsculas e únicos. Senhas ficam armazenadas com BCrypt e nunca aparecem nas respostas.
@@ -95,7 +96,7 @@ Após logout, o visitante recebe outro carrinho vazio. O carrinho privado contin
 Preços e totais usam centavos inteiros em BRL. O desconto é arredondado por unidade para o centavo mais próximo antes de multiplicar pela quantidade.
 O servidor calcula preços e verifica estoque. Adicionar ao carrinho não reserva ou reduz o estoque.
 
-Toda resposta do carrinho inclui `ETag`, como `"2"`. Envie esse valor completo em `If-Match` ao ajustar ou remover.
+Toda resposta do carrinho inclui `ETag`, como `"2"`. Envie esse valor completo em `If-Match` ao ajustar, remover ou realizar um pedido.
 Ausência de `If-Match` retorna `428`; versão antiga retorna `412`. Consulte o carrinho novamente antes de repetir.
 `Idempotency-Key` evita somar duas vezes o mesmo acréscimo no mesmo carrinho. Use uma chave nova por intenção.
 Repetição com outro produto ou quantidade retorna `409`; repetição igual retorna o estado atual, sem novo acréscimo.
@@ -128,6 +129,8 @@ O teste HTTP usa PostgreSQL real e cria contas de teste com e-mail único. Ele n
 
 ## Escopo
 
-Esta entrega cobre catálogo, cadastro básico, edição de nome/e-mail, sessão e carrinho. O frontend Angular em `frontend/` consome a API por meio do proxy de desenvolvimento ou do reverse proxy de produção.
+Esta entrega cobre catálogo, cadastro básico, edição de nome/e-mail, sessão, carrinho e registro de pedidos. O frontend Angular em `frontend/` consome a API por meio do proxy de desenvolvimento ou do reverse proxy de produção.
 A especificação de migração também propõe telefone/endereço obrigatórios, recuperação de senha e limites de frequência. Esses recursos não fazem parte desta versão básica.
-Não há checkout, pedidos, pagamentos, envio de e-mails ou administração de estoque.
+Pedidos ficam nas tabelas `pedidos` e `itens_pedido`, com data, usuário autenticado, títulos, quantidades, preços e total em centavos. O usuário é obtido somente da sessão; visitantes recebem `401` e mantêm seu carrinho. A gravação e a limpeza do carrinho ocorrem na mesma transação; falhas preservam o carrinho. Carrinho vazio ou itens indisponíveis/com estoque insuficiente retornam `409`. Versão antiga retorna `412`, evitando duplicação por cliques simultâneos.
+
+Não há pagamento, baixa de estoque, envio de e-mails ou administração de estoque.
