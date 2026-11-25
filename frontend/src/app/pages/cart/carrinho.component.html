@@ -1,0 +1,72 @@
+<section class="carrinho-pagina" [attr.aria-busy]="store.busy()">
+  <h1>Meu carrinho</h1>
+  @if (store.error()) {
+    <div class="carrinho-erro" role="alert">
+      <p>{{ store.error() }}</p>
+      <button type="button" (click)="store.load()" [disabled]="store.busy()">Atualizar carrinho</button>
+    </div>
+  }
+  @if (store.busy()) {
+    <p role="status">Atualizando carrinho…</p>
+  }
+  @if (store.cart(); as cart) {
+    @if (cart.itens.length === 0) {
+      <div class="carrinho-vazio">
+        <h2>Carrinho vazio</h2>
+        <a routerLink="/" class="carrinho-link-compras">Ir às compras</a>
+      </div>
+    } @else {
+      <div class="carrinho-conteudo">
+        <div class="carrinho-itens">
+          @for (item of cart.itens; track item.produtoId) {
+            <article class="item-carrinho">
+              <a [routerLink]="['/produto', item.produtoId]" [attr.aria-label]="'Ver ' + item.titulo">
+                <img class="item-carrinho-imagem" [src]="image(item.imagemUrl)" [alt]="item.titulo" loading="lazy" (error)="fallbackImage($event)">
+              </a>
+              <div class="item-carrinho-informacoes">
+                <h2><a [routerLink]="['/produto', item.produtoId]">{{ item.titulo }}</a></h2>
+                <div class="item-carrinho-precos">
+                  @if (item.precoFinalCentavos < item.precoBaseCentavos) {
+                    <s class="item-carrinho-preco-original">{{ item.precoBaseCentavos / 100 | currency:'BRL' }}</s>
+                  }
+                  <strong class="item-carrinho-preco">{{ item.precoFinalCentavos / 100 | currency:'BRL' }}</strong>
+                </div>
+                <p>Total: {{ item.totalCentavos / 100 | currency:'BRL' }}</p>
+                @if (item.situacao === 'INDISPONIVEL') {
+                  <p class="item-carrinho-aviso">Produto indisponível. Remova para continuar suas compras.</p>
+                } @else if (item.situacao === 'ESTOQUE_INSUFICIENTE') {
+                  <p class="item-carrinho-aviso">Estoque disponível: {{ item.estoqueDisponivel }}. Ajuste a quantidade.</p>
+                }
+              </div>
+              <div class="item-carrinho-acoes">
+                <div class="item-carrinho-quantidade" role="group" [attr.aria-label]="'Quantidade de ' + item.titulo">
+                  <button type="button" [attr.aria-label]="'Diminuir quantidade de ' + item.titulo"
+                    [disabled]="store.busy() || item.quantidade <= 1 || item.estoqueDisponivel < 1 || item.situacao === 'INDISPONIVEL'"
+                    (click)="store.update(item.produtoId, item.quantidade > item.estoqueDisponivel ? item.estoqueDisponivel : item.quantidade - 1)">−</button>
+                  <span aria-live="polite">{{ item.quantidade }}</span>
+                  <button type="button" [attr.aria-label]="'Aumentar quantidade de ' + item.titulo"
+                    [disabled]="store.busy() || item.quantidade >= item.estoqueDisponivel || item.situacao === 'INDISPONIVEL'"
+                    (click)="store.update(item.produtoId, item.quantidade + 1)">+</button>
+                </div>
+                <button type="button" class="item-carrinho-remover" [disabled]="store.busy()"
+                  [attr.aria-label]="'Remover ' + item.titulo" (click)="store.remove(item.produtoId)">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7" />
+                  </svg>
+                </button>
+              </div>
+            </article>
+          }
+        </div>
+        <aside class="carrinho-resumo" aria-label="Resumo da compra">
+          <h2>Resumo da compra</h2>
+          <div><span>Subtotal</span><strong>{{ cart.subtotalCentavos / 100 | currency:'BRL' }}</strong></div>
+          <div><span>Descontos</span><strong class="carrinho-desconto">− {{ cart.descontoCentavos / 100 | currency:'BRL' }}</strong></div>
+          <div class="carrinho-total"><span>Total</span><strong>{{ cart.totalCentavos / 100 | currency:'BRL' }}</strong></div>
+          <button type="button" class="botao-prosseguir" disabled aria-describedby="checkout-status">Prosseguir</button>
+          <p id="checkout-status">Finalização de compra ainda indisponível.</p>
+        </aside>
+      </div>
+    }
+  }
+</section>
