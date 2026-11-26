@@ -28,9 +28,9 @@ npm test
 - `src/app/pages/auth`: login, cadastro e conta.
 - `src/app/app.component.*`: cabeçalho, busca sincronizada com a URL e rodapé.
 
-Rotas: `/`, `/resultado-busca?busca=...`, `/produto/:id`, `/carrinho`, `/login`, `/cadastro`, `/logado` e página de endereço inexistente. A busca aguarda 300 ms, cancela consultas anteriores e substitui o histórico durante a digitação. Carrinho e catálogo possuem estados de carregamento, erro e vazio. Erros de concorrência atualizam o carrinho sem repetir automaticamente a alteração.
+Rotas: `/`, `/resultado-busca?busca=...`, `/produto/:id`, `/carrinho`, `/login`, `/cadastro`, `/logado`, `/logado/excluir` e página de endereço inexistente. A busca aguarda 300 ms, cancela consultas anteriores e substitui o histórico durante a digitação. Carrinho e catálogo possuem estados de carregamento, erro e vazio. Erros de concorrência atualizam o carrinho sem repetir automaticamente a alteração.
 
-Dados e sessão vêm exclusivamente da API. Nenhum dado das antigas chaves locais `usuarios`, `usuarioLogado` ou `carrinho` é importado. Cadastro utiliza apenas os campos aceitos pelo backend: nome, e-mail, senha e nascimento opcional. Finalização de compra permanece desabilitada com explicação.
+Dados e sessão vêm exclusivamente da API. Nenhum dado das antigas chaves locais `usuarios`, `usuarioLogado` ou `carrinho` é importado. Cadastro utiliza apenas os campos aceitos pelo backend: nome, e-mail, senha e nascimento opcional. A ação **Realizar pedido** exige login e envia `POST /api/v1/pedidos` com CSRF e `If-Match`; o sucesso confirma o identificador do pedido e atualiza o carrinho vazio. Não há pagamento nem baixa de estoque.
 
 Após entrar, acesse **Minha conta** (`/logado`) para editar nome e e-mail. O formulário envia `PUT /api/v1/usuarios/me` com `{ nomeCompleto, email }`, cookies de sessão e token CSRF. O retorno `{ usuario }` atualiza o estado da sessão e a saudação sem recarregar a página. A tela valida campos obrigatórios, nome com até 120 caracteres e e-mail válido com até 254 caracteres; apresenta confirmação ou erro e impede envios repetidos durante a operação. Senha e data de nascimento não são editadas nesse formulário.
 
